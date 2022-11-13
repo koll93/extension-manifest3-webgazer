@@ -1,0 +1,50 @@
+{
+	"name": "testWebgazer",
+	"description": "testWebgazer",
+	"version": "1.0",
+	"manifest_version": 3,
+	"permissions": [
+		"contextMenus",
+		"notifications",
+		"storage"
+	],
+	"background": {
+	  "service_worker": "background.js"
+	},
+	"action": {
+	  "default_icon": {
+		"64": "/assets/icons/64.png",
+		"128": "/assets/icons/128.png"
+	  }
+	},
+	"icons": {
+		"64": "/assets/icons/64.png",
+		"128": "/assets/icons/128.png"
+	},
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"src/js/*"
+			],
+			"matches": [
+				"<all_urls>"
+			]
+		}
+	],
+	"content_scripts": [
+		{
+			"matches": [
+				"http://*/*",
+				"https://*/*",
+				"<all_urls>"
+			],
+			"run_at": "document_idle",
+			"all_frames": true,
+			"js": [
+				"webgazer.js",
+				"content.js"
+			],
+			"css": []
+		}
+	]
+}
